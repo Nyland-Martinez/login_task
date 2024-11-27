@@ -12,7 +12,16 @@
   <body>
     <nav>
       <ul>
-        <li><a href="{% url 'tasks:index' %}">Lista de Tareas</a></li> 
+        <!-- Aquí comienza -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'tasks:index' %}">Lista de tareas</a></li>
+        <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        <li><a href="{% url 'user_detail' user.pk %}">Información del miembro</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        <li><a href="{% url 'signup' %}">Registro de usuario</a></li>
+        {% endif %}
+        <!-- Aquí termina -->
       </ul>
     </nav>
     <main>
